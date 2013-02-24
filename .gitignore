@@ -1,20 +1,44 @@
-# built application files
-*.apk
-*.ap_
-
-# files for the dex VM
-*.dex
-
-# Java class files
-*.class
-
-# generated files
-bin/
-gen/
-
-# Local configuration file (sdk path, etc)
-local.properties
-
-# Eclipse project files
-.classpath
-.project
+echo off
+COLOR E
+cls
+echo =============================================================================
+echo.
+echo         ***************   HUAWEI Y210 B839 ROOTER   ****************
+echo.
+echo   1) Make Sure You've checked both Unknown Source and Usb Debugging
+echo.
+echo   2) Put Your Phone into Fastboot mode (Vol Down+Power)
+echo.
+echo   3) Please Wait about 3 minutes and we'll back soon :D
+echo.
+echo      WARNNING!!!! This is Only for Huawei Y210 B839.
+echo.
+echo      CREDIT TO MM-MPX TEAM FOR INSECURE BOOT IMAGE!!!!!!
+echo.
+echo      Created by Gibbon @ Computer Science , Yadanabon University Mandalay
+echo.
+echo =============================================================================
+echo.
+pause
+fastboot devices
+fastboot flash boot insecure_boot.img
+echo Now Phone will reboot
+fastboot reboot
+echo Now Waiting For Phone to Root
+adb wait-for-devices
+adb remount
+adb push su /system/bin/su
+adb shell chown 0.0 /system/bin/su
+adb shell chmod 06755 /system/bin/su
+adb push busybox /system/bin/busybox
+adb shell chown 0.0 /system/bin/busybox
+adb shell chmod 0755 /system/bin/busybox
+adb push Superuser.apk /system/app/Superuser.apk
+adb shell chown 0.0 /system/app/Superuser.apk
+adb shell chmod 0644 /system/app/Superuser.apk
+adb push RootExplorer.apk /system/app/RootExplorer.apk
+adb shell chown 0.0 /system/app/RootExplorer.apk
+adb shell chmod 0644 /system/app/RootExplorer.apk
+adb reboot
+echo Now Phone will Reboot and Enjoy ROOT and MM FONT :D
+pause
